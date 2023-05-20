@@ -8,6 +8,7 @@ def load_model():
     model = tf.keras.models.load_model('final_model.h5')
     return model
 
+@tf.function
 def import_and_predict(image_data, model):
     size = (64, 64)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
