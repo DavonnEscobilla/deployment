@@ -22,7 +22,7 @@ def import_and_predict(image_data, model):
     size = (64, 64)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     img = np.asarray(image)
-    img_reshape = img.reshape((1,) + img.shape)  # Reshape the image array
+    img_reshape = np.reshape(img, (1,) + img.shape)
     prediction = model.predict(img_reshape)
     return prediction
 
