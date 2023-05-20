@@ -33,3 +33,6 @@ def main():
         ]
         string = "OUTPUT: " + class_names[np.argmax(prediction)]
         st.success(string)
+
+if __name__ == '__main__':
+    main()
