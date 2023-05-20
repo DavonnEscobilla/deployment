@@ -1,9 +1,10 @@
 import streamlit as st
 import tensorflow as tf
+from tensorflow.keras.models import load_model
 
 @st.cache(allow_output_mutation=True)
 def load_model():
-    model = tf.keras.models.load_model('final_model.h5')
+    model = load_model('final_model.h5')
     return model
 
 model = load_model()
@@ -22,6 +23,7 @@ def import_and_predict(image_data, model):
     size = (64, 64)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     img = np.asarray(image)
+    img = img.astype('float32') / 255.0  # Normalize image values to the range [0, 1]
     img_reshape = np.reshape(img, (1,) + img.shape)
     prediction = model.predict(img_reshape)
     return prediction
